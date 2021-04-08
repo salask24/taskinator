@@ -1,6 +1,8 @@
+var taskIdCounter = 0;
+
+
 var formEl = document.querySelector("#task-form"); 
 var tasksToDoEl = document.querySelector("#tasks-to-do"); 
-var taskIdCounter = 0;
 
 
 //taskFormHandler
@@ -9,7 +11,6 @@ var taskFormHandler = function(event) {
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
-  
 
     // check if input values are empty strings
     if (!taskNameInput || !taskTypeInput) {
@@ -49,9 +50,11 @@ var taskInfoEl = document.createElement("div");
 taskInfoEl.className = "task-info";
 taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
 
+
 var taskActionsEl = createTaskActions(taskIdCounter);
 listItemEl.appendChild(taskActionsEl);
 
+// add entire list item to list
 tasksToDoEl.appendChild(listItemEl);
 
 // increase task counter for next unique id
@@ -61,6 +64,7 @@ taskIdCounter++;
 
 //taskIds
 var createTaskActions = function(taskId) {
+    
     var actionContainerEl = document.createElement("div");
     actionContainerEl.className = "task-actions";
 
